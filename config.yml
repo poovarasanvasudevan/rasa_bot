@@ -1,0 +1,29 @@
+language: "en"
+
+policies:
+  - name: KerasPolicy
+    epochs: 50
+    max_history: 20
+  - name: AugmentedMemoizationPolicy
+    max_history: 20
+  - name: FallbackPolicy
+    nlu_threshold: 0.8
+    core_threshold: 0.3
+    fallback_action_name: 'utter_i_cant_understand'
+  - name: FormPolicy
+
+
+
+pipeline:
+  - name: "nlp_spacy"                   # loads the spacy language model
+  - name: "tokenizer_spacy"             # splits the sentence into tokens
+  - name: "intent_entity_featurizer_regex"
+  - name: "ner_crf"                   # uses the pretrained spacy NER model
+  - name: "intent_featurizer_spacy"     # transform the sentence into a vector representation
+  - name: "intent_classifier_sklearn"   # uses the vector representation to classify using SVM
+  - name: "ner_synonyms"                # trains the synonyms
+  - name: "intent_featurizer_count_vectors"
+  - name: "intent_classifier_tensorflow_embedding"
+    intent_tokenization_flag: true
+    intent_split_symbol: "+"
+

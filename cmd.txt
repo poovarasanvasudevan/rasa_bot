@@ -1,0 +1,9 @@
+training online
+python -m rasa_core.train interactive --core models/current/dialogue --nlu models/current --endpoints endpoint.yml
+
+
+nlu train
+python -m rasa_nlu.train -c config.yml --data data/nlu_data.md -o models --project current --verbose
+
+train dialogue
+python -m rasa_core.train -d domain.yml -s data/stories.md -o models/current/dialogue -c config.yml

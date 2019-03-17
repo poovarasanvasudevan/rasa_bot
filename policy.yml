@@ -1,0 +1,12 @@
+language: "en"
+policies:
+  - name: KerasPolicy
+    epochs: 50
+    max_history: 20
+  - name: AugmentedMemoizationPolicy
+    max_history: 20
+  - name: FallbackPolicy
+    nlu_threshold: 0.8
+    core_threshold: 0.3
+    fallback_action_name: 'utter_i_cant_understand'
+  - name: FormPolicy
