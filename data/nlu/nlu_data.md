@@ -1,9 +1,13 @@
+## intent:ad_account_password_reset
+- /ad_account_password_reset
+
 ## intent:bye
 - bye
 - good bye
 - bye bye
 - bye have a nice day
 - good bye have a nice say
+- bye
 - bye
 
 ## intent:confirm_alternative_verification
@@ -38,7 +42,6 @@
 - good morning
 - hello
 - hello
-
 
 ## intent:mood_confirm
 - Yes
@@ -78,6 +81,22 @@
 - can you please [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
 - can you [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
 - please [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
+- i want to [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
+
+## intent:set_ad_badgeid
+- [34567](BADGEID)
+
+## intent:set_ad_contact_number
+- call me tomorrow 10 AM on [555-897-0977](CONTACT_NUMBER)
+
+## intent:set_ad_dob_ssn
+- 6677
+- [11/03](DOB_SSN)
+
+## intent:set_ad_username_or_fullname
+- [smith, john](FULLNAME)
+- john.smith
+- [vasudevan, poovarasan](FULLNAME)
 
 ## intent:set_badgeid
 - [1234](BADGEID)
@@ -138,8 +157,12 @@
 ## intent:set_username_or_fullname
 - my name is [John smith](NAME) and my username is [j.smith](USERNAME)
 
+## synonym:august 12
+- August 12
+
 ## synonym:negative
 - {"ALTERNATIVE_VERIFICATION_CONFIRMATION":"negative"}
+- {"HELP_ANYTHING":"negative"}
 - {"PASSWORD_RESET_CONFIRMATION":"negative"}
 
 ## synonym:positive

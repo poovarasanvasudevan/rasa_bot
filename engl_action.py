@@ -2,14 +2,14 @@ import logging
 import string
 import random
 import re
-
+import time
 from duckling import DucklingWrapper
 from dateutil import parser
-from core.duckling import Duckling
 from rasa_core_sdk import Action, Tracker
 from rasa_core_sdk.executor import CollectingDispatcher
 from rasa_core_sdk.forms import FormAction
 from rasa_core_sdk.events import SlotSet, UserUtteranceReverted, ConversationPaused, FollowupAction, Form
+from core.duckling import Duckling
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
@@ -88,6 +88,7 @@ class ActionVerifyFullname(Action):
             domain  # type:  Dict[Text, Any]
             ):
 
+        time.sleep(5)
         last_message = tracker.latest_message.get('text')
 
         grp = re.search(fullname_regex, last_message)
@@ -113,6 +114,7 @@ class ActionVerifyUsername(Action):
             tracker,  # type: Tracker
             domain  # type:  Dict[Text, Any]
             ):
+        time.sleep(5)
         user_detail_slot = SlotSet('FULLNAME', tracker.latest_message.get('text'))
         if tracker.latest_message.get('text') in valid_username:
             user_verification_slot = SlotSet('USER_VERIFICATION_RESULT', 'found')
@@ -132,6 +134,7 @@ class ActionVerifyBadgeID(Action):
             tracker,  # type: Tracker
             domain  # type:  Dict[Text, Any]
             ):
+        time.sleep(5)
         badge_id = tracker.latest_message.get('text')
         is_badgeid_valid = False
         if badge_id in valid_badge_id:
@@ -156,7 +159,7 @@ class ActionCheckAccountProblem(Action):
         usernameorfullname = None
 
         user_entered = tracker.get_slot('USER_TYPED_FULLNAME_OR_USERNAME')
-
+        time.sleep(5)
         if user_entered == 'username':
             username = tracker.get_slot('USERNAME')
             if username in valid_username:
@@ -219,11 +222,15 @@ class ActionCreateTicketOnVerificationFailed(Action):
             domain  # type:  Dict[Text, Any]
             ):
         user_message = tracker.latest_message.get('text')
-
+        time.sleep(5)
         return [SlotSet('VERIFICATION_FAILED_TICKET_NUMBER', 'PT1234564357')]
 
 
 class ActionVerifyDOBSSN(Action):
+    __d = None
+
+    def __init__(self):
+        self.__d = Duckling.getInstance()
 
     def name(self):
         return 'action_verify_dob_ssn'
@@ -245,8 +252,8 @@ class ActionVerifyDOBSSN(Action):
         if '/' in tracker.latest_message.get('text'):
             entered_slot = SlotSet('DOB_SSN_ENTERED', 'DOB')
             # extract date
-            d = DucklingWrapper()
-            parsed_time = d.parse_time(tracker.latest_message.get('text'))
+
+            parsed_time = self.__d.parse_time(tracker.latest_message.get('text'))
 
             if len(parsed_time) is not 0:
                 time = list(filter(lambda x: x.get('dim') == 'time', parsed_time))

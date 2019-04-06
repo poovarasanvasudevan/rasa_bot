@@ -1,16 +1,5 @@
 ## intent:ad_account_password_reset
 - /ad_account_password_reset
-- /ad_account_password_reset
-- /ad_account_password_reset
-- poovarasan.v
-- /ad_account_password_reset
-- /ad_account_password_reset
-- /ad_account_password_reset
-- ad_account_password_reset
-- /ad_account_password_reset
-- /ad_account_password_reset
-- /ad_account_password_reset
-- /ad_account_password_reset
 
 ## intent:bye
 - goodbye
@@ -186,7 +175,6 @@
 - need to [reset](DO_ACTION) my [computer](ACCOUNT_TYPE) password
 - hi ,  from this morning i was not able to log in to my computer
 - can you [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
-- can you [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
 - please [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
 - i was not able to login to [my](SOURCE_ACCOUNT) account
 - my login says invalid password
@@ -207,30 +195,13 @@
 - i was not able to login to my computer
 - yesterday jane dome something in my computer from that onwards i was not able to login to my computer
 - i want to [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
-- i want to [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
-- i want to [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
-- i want to [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
-- i want to [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
-- i want to [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
-- i want to [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
-- i wannt to [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
-- i want to [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
-- i want to [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
 - i want to [reset](DO_ACTION) password
-- i want to [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
 
 ## intent:set_ad_badgeid
 - [43567](BADGEID)
 - my badgeid is [12654](BADGEID)
 - [12444](BADGEID) is my badgeid
-- 35783
-- [12345](BADGEID)
-- [12345](BADGEID)
-- [12345](BADGEID)
-- [89887](BADGEID)
-- [90876](BADGEID)
-- [89065](BADGEID)
-- [12345](BADGEID)
+- [35783](BADGEID)
 
 ## intent:set_ad_contact_number
 - you can contact me in [222-543-7894](CONTACT_NUMBER) at anytime [tomorrow]
@@ -255,15 +226,7 @@
 - my ssn is [9000](DOB_SSN)
 - my dob is [11/06](DOB)
 - my date of birth is [11/07](DOB)
-- 1234
-- 9876
-- 1234
-- 1234
 - [11/11](DOB_SSN)
-- 9087
-- [11/21](DOB_SSN)
-- [11/20](DOB_SSN)
-- 1234
 
 ## intent:set_ad_username_or_fullname
 - [jsmith](USERNAME)
@@ -276,8 +239,6 @@
 - [kulathu, raj](FULLNAME)
 - [poovarasan.v](username)
 - [raj.kulathu](USERNAME)
-- [vasudevan, poovarasan](FULLNAME)
-- [vasudevan, poovarasan](FULLNAME)
 - [vasudevan, poovarasan](FULLNAME)
 - [paul, joel](FULLNAME)
 - poovarasan.v

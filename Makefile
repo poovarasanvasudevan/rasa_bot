@@ -18,6 +18,9 @@ clean-dir:
 start-server:
 	python -m rasa_core_sdk.endpoint --actions actions
 
+engl-server:
+	python -m rasa_core_sdk.endpoint --actions engl_action
+
 start-action-server:
 	python -m rasa_core_sdk.endpoint --actions actions
 
