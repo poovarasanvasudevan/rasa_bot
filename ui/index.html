@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chatbot</title>
+        <link rel="stylesheet" href='css/jquery-ui.css'/>
+        <link rel="stylesheet" href='css/chat.css'/>
+        <link rel="stylesheet" href='css/icons-min.css'/>
+
+    </head>
+    <body>
+
+
+        <div class="fabs">
+            <div class="chat">
+                <div class="chat_header">
+                    <div class="chat_option">
+                        <div class="header_img">
+                            <img src="img/icon-auto-reply.png"/>
+                        </div>
+                        <span id="chat_head" class="chat-logged-user">Welcome</span> <span
+                            class="chat-user-avl user-avl"></span>
+                        <br>
+                        <span id="chat_fullscreen_loader" class="chat_fullscreen_loader" title="Maximize Window"><i
+                                class="fullscreen zmdi zmdi-window-maximize"></i></span>
+                        <span id="chat_minimize_fullscreen_loader" class="chat_fullscreen_loader" title="Minimize Window"><i
+                                class="zmdi zmdi-window-minimize minimize-window"></i></span>
+                        <a href="tel:1-408-555-5555"><span id="" class="float_right icon-call-exec"
+                                                           title="Call Our Executive"><i
+                                    class="zmdi zmdi-headset-mic"></i></span></a>
+                    </div>
+
+                </div>
+                <div id="chat_converse" class="chat_conversion chat_converse">
+                    <!-- Default Message -->
+                    <div class="chat_msg_item_default">
+                        <!--<img src="img/icon-auto-reply.png" class="img-admin-avatar"/>-->
+                        <!--                <div class="chat-msg chat-default-msg">
+                                            <h4 style="color: #00a7e1;">Hi! I'm your personal Service Desk assistant.</h4>
+                        
+                                        </div>-->
+
+                    </div>
+                    <!-- <asp:Literal runat="server" ID="html_ChatHistory"></asp:Literal> -->
+
+                </div>
+                <div class="fab_field">
+                    <!--<a id="fab_camera" class="fab float_left bg_white"><i class="zmdi zmdi-refresh"></i></a>-->
+                    <a id="fab_speech" class="bg_white" title="Speak" onclick="return startListening()">
+                        <i class="zmdi zmdi-mic-outline icon_fab_field"></i>
+                        <!--<img src="img/icon-mic-off.png" class="icon-converse" />-->
+                    </a>
+                    <textarea id="chatSend" name="chat_message" placeholder="Type a Query ..." class="chat_field chat_message"
+                              onkeypress="return SendMessage(event)"></textarea>
+                    <a id="fab_send" class=" bg_white" title="Send" onclick="return ChatMessage()">
+                        <i class="zmdi zmdi-mail-send icon_fab_field"></i>
+                        <!--<img src="img/icon-send.png" class="icon-converse" />-->
+                    </a>
+                    
+                </div>
+            </div>
+            <!--<a id="prime" class="fab pulse" title="Have a Question?"><i class="prime zmdi zmdi-comment-outline"></i></a>-->
+            <a id="prime" class="fab ripple default-img" title="Have a Question?"></a>
+        </div>
+
+
+        <!-- jQuery -->
+        <script src='js/jquery-3.3.1.js'></script>
+        <script src='js/jquery-ui.js'></script>
+        <script src='js/chat-1.0.0.js'></script>
+    </body>
+</html>
