@@ -2,16 +2,15 @@ language: "en"
 
 policies:
   - name: KerasPolicy
-    epochs: 50
+    epochs: 20
     max_history: 20
   - name: AugmentedMemoizationPolicy
     max_history: 20
   - name: FallbackPolicy
-    nlu_threshold: 0.8
+    nlu_threshold: 0.7
     core_threshold: 0.3
     fallback_action_name: 'utter_i_cant_understand'
   - name: FormPolicy
-
 
 
 pipeline:
@@ -23,6 +22,7 @@ pipeline:
   - name: "intent_classifier_sklearn"   # uses the vector representation to classify using SVM
   - name: "ner_synonyms"                # trains the synonyms
   - name: "intent_featurizer_count_vectors"
+  - name: "data.engl.extractor.SingleWordEntityExtractor"
   - name: "intent_classifier_tensorflow_embedding"
     intent_tokenization_flag: true
     intent_split_symbol: "+"

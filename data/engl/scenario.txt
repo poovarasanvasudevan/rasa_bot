@@ -1,0 +1,10 @@
+TRAINING
+password reset correct (USERNAME) -- done
+password reset locked (USERNAME) -- done
+password reset expired (USERNAME) -- DONE
+----------------------------------------------------
+password reset correct (FULLNAME) --
+password reset locked (FULLNAME) --
+password reset expired (FULLNAME) --
+-------------------------------------------------------
+

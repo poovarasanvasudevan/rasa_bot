@@ -30,7 +30,7 @@ def train_nlu():
 def train_dialogue(
         domain_file="domain.yml",
         model_path="models/dialogue",
-        training_data_file="data/stories.md"
+        training_data_file="data/verification_failed_on_dob_ssn.md"
 ):
     agent = Agent(domain_file,policies = [MemoizationPolicy(), KerasPolicy(max_history=3, epochs=200, batch_size=50)])
     training_data = agent.load_data(training_data_file, )

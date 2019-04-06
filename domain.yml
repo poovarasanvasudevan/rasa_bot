@@ -1,96 +1,150 @@
 %YAML 1.1
 ---
 actions:
-  - action_do_password_reset
-  - action_verify_fullname
-  - action_verify_badgeid
-  - utter_i_cant_understand
-  - utter_ask_username
-  - utter_ask_for_problem
+  - utter_ask_what_kind_of_account
+  - utter_say_how_can_i_help_you
+  - utter_ask_can_i_help_anything_else
+  - utter_say_need_verification
+  - utter_say_anything_i_can_help
+  - utter_ask_badgeid
+  - utter_say_temporary_password
+  - utter_say_cannot_procceed_further
   - action_all_verification_complete
-  - utter_verification_failed
-  - utter_greetings
-  - utter_how_i_am
+  - utter_ask_for_alternative_verification
+  - utter_bye
+  - action_verify_username
   - utter_ask_ssn
   - utter_unable_to_process_quit
-  - utter_verification_success
-  - utter_say_temporary_password
-  - utter_ask_for_password_reset
-  - action_verify_username
   - utter_ask_fullname
-  - utter_bye
-  - utter_ask_badgeid
-  - utter_its_nice_to_meet_you
-  - utter_user_name_verification_failed
-  - utter_ask_dob
-  - utter_say_need_verification
+  - utter_verification_failed
+  - utter_ask_for_problem
   - utter_user_name_verification_success
-  - utter_ask_for_alternative_verification
+  - utter_i_cant_understand
+  - action_verify_fullname
+  - utter_ask_username
+  - utter_ask_dob
+  - action_verify_dob
+  - utter_ask_for_password_reset
+  - action_do_password_reset
+  - action_verify_badgeid
+  - utter_greetings
+  - utter_verification_success
+  - action_verify_ssn
 entities:
   - PASSWORD_RESET_CONFIRMATION
-  - TEMPORARY_PASSWORD
-  - DO_ACTION
-  - ACCOUNT_TYPE
   - FULLNAME
-  - BADGEID
-  - PASSSWORD_RESET_CONFIRMATION
-  - USERNAME
   - USER
+  - USERNAME
+  - DO_ACTION
   - NAME
+  - BADGEID
+  - ALTERNATIVE_VERIFICATION_CONFIRMATION
+  - PASSSWORD_RESET_CONFIRMATION
+  - DOB
+  - ACCOUNT_TYPE
+  - SSN
+  - HELP_ANYTHING
+  - TEMPORARY_PASSWORD
+  - SOURCE_ACCOUNT
 intents:
-  - confirm_password_reset
+  - ad_account_password_reset
   - confirm_alternative_verification
-  - set_user_problem
-  - set_badgeid
-  - set_usename
-  - set_fullname
+  - confirm_anything_else
+  - confirm_password_reset
+  - set_dob
   - password_reset
+  - set_badgeid
+  - set_fullname
+  - set_usename
+  - set_ssn
+  - set_user_problem
   - greetings
   - get_password_type
   - set_username_or_fullname
-  - how_are_you
   - bye
   - my_name_is
   - mood_confirm
   - mood_deny
+  - dont_have_username
+  - dont_have_badgeid
+  - dont_have_ssn
 slots:
+  ALTERNATIVE_VERIFICATION_CONFIRMATION:
+    type: categorical
+    values:
+      - positive
+      - negative
   BADGEID:
     type: text
   BADGE_ID_VERIFIED:
+    type: bool
+  DOB:
+    type: unfeaturized
+  DOB_VERIFIED:
     type: bool
   FULLNAME:
     type: text
   FULL_NAME_VERIFIED:
     type: bool
-  PASSSWORD_RESET_CONFIRMATION:
+  HELP_ANYTHING:
     type: categorical
     values:
       - positive
       - negative
-  ALTERNATIVE_VERIFICATION_CONFIRMATION:
+  PASSSWORD_RESET_CONFIRMATION:
     type: categorical
     values:
       - positive
       - negative
   PERSON:
     type: text
+  SSN:
+    type: text
+  SSN_VERIFIED:
+    type: bool
   TEMPORARY_PASSWORD:
     type: text
   USERNAME:
     type: text
   USER_NAME_VERIFIED:
     type: bool
+
+
 templates:
+  utter_ask_what_kind_of_account:
+    - text: Sure! Which password would you like to reset?
+      buttons:
+        - payload: /ad_account_password_reset
+          title: Active Directory/Computer/Email
+        - payload: /eclinicalworks
+          title: eClinicalWorks (eCW)
+        - payload: /siemens
+          title: Siemens
+
   utter_ask_badgeid:
     - text: Enter your badgeid
+  utter_ask_can_i_help_anything_else:
+    - buttons:
+        - payload: /confirm_anything_else{HELP_ANYTHING:positive}
+          title: Yes i need some more
+        - payload: /confirm_anything_else{HELP_ANYTHING:negative}
+          title: No exit
+      text: Can i help you anything else
   utter_ask_dob:
     - text: Can you please provide your dob
+  utter_ask_for_alternative_verification:
+    - buttons:
+        - payload: /confirm_alternative_verification{ALTERNATIVE_VERIFICATION_CONFIRMATION:positive}
+          title: Try Alternative Verification
+        - payload: /confirm_alternative_verification{ALTERNATIVE_VERIFICATION_CONFIRMATION:negative}
+          title: No i wont
+      text: Do you want to verify with alternative verification
   utter_ask_for_password_reset:
     - buttons:
         - payload: /confirm_password_reset{PASSSWORD_RESET_CONFIRMATION:positive}
-          title: Yes
+          title: Yes confirm
         - payload: /confirm_password_reset{PASSSWORD_RESET_CONFIRMATION:negative}
-          title: No
+          title: No i wont
       text: Can i reset your password
   utter_ask_for_problem:
     - text: Is that showing any error.
@@ -109,19 +163,22 @@ templates:
   utter_greetings:
     - text: Hi!
     - text: Hello, my friend.
-  utter_how_i_am:
-    - text: I am doing ok.
-    - text: I am good.
+    - text: Hello, how can i help you
   utter_i_cant_understand:
     - text: Sorry i cant understand
-  utter_its_nice_to_meet_you:
-    - text: It's nice to meet you, {PERSON}.
-    - text: Nice to meet you, {PERSON}.
+  utter_say_cannot_procceed_further:
+    - text: Sorry, I can't proceed further
+  utter_say_full_name_verification_failed:
+    - text: Fullname {FULLNAME} is not matched in our records
+  utter_say_how_can_i_help_you:
+    - text: How can i Help you
   utter_say_need_verification:
     - text: Sure you need to verify yourself
     - text: Please Verify yourself
   utter_say_temporary_password:
     - text: We have reset you password your temporary password is {TEMPORARY_PASSWORD}
+  utter_say_user_name_verification_failed:
+    - text: Username {USERNAME} is not matched in our records
   utter_unable_to_process_quit:
     - text: Sorry i was not able to process your request, you can contact our customer
         support or can i transfer this chat to our live agent.
@@ -140,13 +197,4 @@ templates:
     - text: Information you provided is not matched in our system
   utter_verification_success:
     - text: Verification Success
-    - text: Information you enterd with username {USERNAME} and Fullname {FULLNAME}
-        that matched our records
     - text: Great, You have verified your identity
-  utter_ask_for_alternative_verification:
-    - text: Do you want to verify with alternative verification
-      buttons:
-        - payload: /confirm_alternative_verification{ALTERNATIVE_VERIFICATION_CONFIRMATION:positive}
-          title: Yes
-        - payload: /confirm_alternative_verification{ALTERNATIVE_VERIFICATION_CONFIRMATION:negative}
-          title: No
