@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href='css/jquery-ui.css'/>
+    <link rel="stylesheet" href='css/chat.css'/>
+    <link rel="stylesheet" href='css/icons-min.css'/>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="manifest" href="/manifest.json">
+
+
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Template PWA">
+    <link rel="apple-touch-icon" href="img/icons/icon-152x152.png">
+
+    <!-- Windows -->
+    <meta name="msapplication-TileImage" content="img/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#3e93e3">
+    <meta name="theme-color" content="#3e93e3">
+
+    <link rel="icon"
+          type="image/png"
+          href="img/icons/icon-144x144.png">
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%; /* can also use viewport units (height: 100vh) */
+        }
+
+        #container {
+            display: flex; /* displays flex-items (children) inline */
+            flex-direction: column; /* stacks them vertically */
+            height: 100%; /* needs to take the parents height, alternative: body {display: flex} */
+        }
+
+        .main {
+            flex: 1; /* takes the remaining height of the "container" div */
+            overflow: auto; /* to scroll just the "main" div */
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="chat is-visible" id="container">
+    <div class="chat_header">
+        <div class="chat_option">
+            <div class="header_img">
+                <img src="img/icon-auto-reply.png" alt="Carebot logo"/>
+            </div>
+            <span id="chat_head" class="chat-logged-user">Welcome</span> <span
+                class="chat-user-avl user-avl"></span>
+            <br>
+        </div>
+    </div>
+    <div id="chat_converse" class="chat_conversion chat_converse main">
+        <!-- Default Message -->
+        <div class="chat_msg_item_default">
+            <!--<img src="img/icon-auto-reply.png" class="img-admin-avatar"/>-->
+            <!--                <div class="chat-msg chat-default-msg">
+                                <h4 style="color: #00a7e1;">Hi! I'm your personal Service Desk assistant.</h4>
+
+                            </div>-->
+
+        </div>
+        <!-- <asp:Literal runat="server" ID="html_ChatHistory"></asp:Literal> -->
+
+    </div>
+    <div class="fab_field">
+        <!--<a id="fab_camera" class="fab float_left bg_white"><i class="zmdi zmdi-refresh"></i></a>-->
+        <a id="fab_speech" class="bg_white" title="Speak" onclick="return startListening()">
+            <i class="zmdi zmdi-mic-outline icon_fab_field"></i>
+            <!--<img src="img/icon-mic-off.png" class="icon-converse" />-->
+        </a>
+        <textarea id="chatSend" name="chat_message" placeholder="Type a Query ..." class="chat_field chat_message"
+                  onkeypress="return SendMessage(event)"></textarea>
+        <a id="fab_send" class=" bg_white" title="Send" onclick="return ChatMessage()">
+            <i class="zmdi zmdi-mail-send icon_fab_field"></i>
+            <!--<img src="img/icon-send.png" class="icon-converse" />-->
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+            .register('./serviceworker.js')
+            .then(function () {
+                console.log('Service Worker Registered');
+            });
+    }
+</script>
+<!-- jQuery -->
+<script src='js/jquery-3.3.1.js'></script>
+<script src='js/jquery-ui.js'></script>
+<script src='js/chat-1.0.0.js'></script>
+</body>
+</html>
