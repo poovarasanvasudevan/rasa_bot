@@ -1,5 +1,6 @@
 ## intent:ad_account_password_reset
 - /ad_account_password_reset
+- /ad_account_password_reset
 
 ## intent:bye
 - goodbye
@@ -196,6 +197,7 @@
 - yesterday jane dome something in my computer from that onwards i was not able to login to my computer
 - i want to [reset](DO_ACTION) [my](SOURCE_ACCOUNT) password
 - i want to [reset](DO_ACTION) password
+- password [reset](DO_ACTION)
 
 ## intent:set_ad_badgeid
 - [43567](BADGEID)
@@ -219,6 +221,7 @@
 - you can call me monday 10 am with number [212-343-1234](CONTACT_NUMBER)
 - call me to [322-432-8778](CONTACT_NUMBER) on monday morning
 - call me immediately on my desk number extn 3422
+- call me wednesday 10 AM on [443-343-2221](CONTACT_NUMBER)
 
 ## intent:set_ad_dob_ssn
 - [11/08](DOB)
@@ -242,6 +245,8 @@
 - [vasudevan, poovarasan](FULLNAME)
 - [paul, joel](FULLNAME)
 - poovarasan.v
+- [smith, jackson](FULLNAME)
+- smith.jackson
 
 ## intent:thank
 - Thanks
@@ -253,6 +258,7 @@
 - thanks
 - thanks
 - ok thanks
+- thanks
 
 ## intent:user_not_willing_to_provide_information
 - Sorry i will not provide this information

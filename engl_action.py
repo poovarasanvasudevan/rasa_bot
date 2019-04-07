@@ -1,14 +1,13 @@
 import logging
-import string
 import random
 import re
-import time
-from duckling import DucklingWrapper
+import string
+
 from dateutil import parser
 from rasa_core_sdk import Action, Tracker
+from rasa_core_sdk.events import SlotSet
 from rasa_core_sdk.executor import CollectingDispatcher
-from rasa_core_sdk.forms import FormAction
-from rasa_core_sdk.events import SlotSet, UserUtteranceReverted, ConversationPaused, FollowupAction, Form
+
 from core.duckling import Duckling
 
 logger = logging.getLogger(__name__)
@@ -88,7 +87,6 @@ class ActionVerifyFullname(Action):
             domain  # type:  Dict[Text, Any]
             ):
 
-        time.sleep(5)
         last_message = tracker.latest_message.get('text')
 
         grp = re.search(fullname_regex, last_message)
@@ -114,7 +112,7 @@ class ActionVerifyUsername(Action):
             tracker,  # type: Tracker
             domain  # type:  Dict[Text, Any]
             ):
-        time.sleep(5)
+
         user_detail_slot = SlotSet('FULLNAME', tracker.latest_message.get('text'))
         if tracker.latest_message.get('text') in valid_username:
             user_verification_slot = SlotSet('USER_VERIFICATION_RESULT', 'found')
@@ -134,7 +132,6 @@ class ActionVerifyBadgeID(Action):
             tracker,  # type: Tracker
             domain  # type:  Dict[Text, Any]
             ):
-        time.sleep(5)
         badge_id = tracker.latest_message.get('text')
         is_badgeid_valid = False
         if badge_id in valid_badge_id:
@@ -159,7 +156,7 @@ class ActionCheckAccountProblem(Action):
         usernameorfullname = None
 
         user_entered = tracker.get_slot('USER_TYPED_FULLNAME_OR_USERNAME')
-        time.sleep(5)
+
         if user_entered == 'username':
             username = tracker.get_slot('USERNAME')
             if username in valid_username:
@@ -195,8 +192,8 @@ class ActionResetProblem(Action):
             domain  # type:  Dict[Text, Any]
             ):
         lettersAndDigits = string.ascii_letters + string.digits
-        temp_pass = ''.join(random.choice(lettersAndDigits) for i in range(8))
-        return [SlotSet('TEMP_PASSWORD', temp_pass.join('@'))]
+        temp_pass = ''.join(random.choice(lettersAndDigits) for i in range(89)) + "@"
+        return [SlotSet('TEMP_PASSWORD', temp_pass)]
 
 
 class ActionCreatePTForExpiredAccount(Action):
@@ -209,6 +206,17 @@ class ActionCreatePTForExpiredAccount(Action):
             tracker,  # type: Tracker
             domain  # type:  Dict[Text, Any]
             ):
+        time = Duckling.getInstance().parse_time(tracker.latest_message.get('text'))
+        phone_number = Duckling.getInstance().parse_phone_number(tracker.latest_message.get('text'))
+        dates = []
+        for x in time:
+            try:
+                dates.append(parser.parse(x['value']['value']))
+            except:
+                print("EXCEPTION")
+
+        print(phone_number)
+        print(dates)
         return [SlotSet('EXPIRED_ACCOUNT_PT_NUMBER', 'PT1234567')]
 
 
@@ -222,7 +230,7 @@ class ActionCreateTicketOnVerificationFailed(Action):
             domain  # type:  Dict[Text, Any]
             ):
         user_message = tracker.latest_message.get('text')
-        time.sleep(5)
+
         return [SlotSet('VERIFICATION_FAILED_TICKET_NUMBER', 'PT1234564357')]
 
 
@@ -276,3 +284,7 @@ class ActionVerifyDOBSSN(Action):
             SlotSet('DOB_SSN', tracker.latest_message.get('text')),
             SlotSet('DOB_VERIFIED', dob_ssn_verified)
         ]
+
+
+def nearest(items, pivot):
+    return min(items, key=lambda x: abs(x - pivot))

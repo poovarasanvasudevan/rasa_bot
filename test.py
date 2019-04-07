@@ -27,9 +27,17 @@
 # else:
 #     dob_ssn_verified = False
 
-fullname_regex='[A-Za-z]{2,}, [A-Za-z]{2,}'
+# fullname_regex='[A-Za-z]{2,}, [A-Za-z]{2,}'
+#
+#
+# from re import finditer
+# for match in finditer(fullname_regex, "my fullname is arulmurugaiyan, sundharraju"):
+#     print(match.span(), match.group())
 
+import string
+import random
 
-from re import finditer
-for match in finditer(fullname_regex, "my fullname is arulmurugaiyan, sundharraju"):
-    print(match.span(), match.group())
+lettersAndDigits = string.ascii_letters + string.digits
+temp_pass = ''.join(random.choice(lettersAndDigits) for i in range(9)) + "@"
+print(temp_pass)
+print(temp_pass + ('@'))

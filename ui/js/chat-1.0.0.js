@@ -267,26 +267,31 @@ function ChatSuggestions(idCtrl, strMessage) {
     MsgAdminDiv.className = "custom-tag-wrapper";
     document.getElementById("chatSend").disabled = false;
     for (var i = 0; i < str_array.length; i++) {
-        // Trim the excess whitespace.
-        str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
-        // Add additional code here, such as:
-        if (i == 0) {
-            //MsgAdminDiv.innerHTML = str_array[0] + "</BR>";
-            ChatAdmin(str_array[0]);
-        } else {
-            if (strMessage.includes("tel:")) {
-                var caller = document.createElement('a');
-                caller.href = str_array[1];
-                caller.click();
-            } else {
-                var MsgAdminSpan = document.createElement('span');
-                MsgAdminSpan.id = i;
-                MsgAdminSpan.className = "custom-tag";
-                MsgAdminSpan.innerHTML = str_array[i];
-                MsgAdminDiv.appendChild(MsgAdminSpan);
-                document.getElementById("chatSend").disabled = true;
-            }
-        }
+
+        (function (i) {
+            setTimeout(function () {
+                // Trim the excess whitespace.
+                str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
+                // Add additional code here, such as:
+                if (i === 0) {
+                    //MsgAdminDiv.innerHTML = str_array[0] + "</BR>";
+                    ChatAdmin(str_array[0]);
+                } else {
+                    if (strMessage.includes("tel:")) {
+                        var caller = document.createElement('a');
+                        caller.href = str_array[1];
+                        caller.click();
+                    } else {
+                        var MsgAdminSpan = document.createElement('span');
+                        MsgAdminSpan.id = i;
+                        MsgAdminSpan.className = "custom-tag";
+                        MsgAdminSpan.innerHTML = str_array[i];
+                        MsgAdminDiv.appendChild(MsgAdminSpan);
+                        document.getElementById("chatSend").disabled = true;
+                    }
+                }
+            }, 3000 * (i + 1));
+        })(i);
     }
 
     document.getElementById("chat_converse").appendChild(MsgAdminDiv);
