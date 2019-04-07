@@ -1,71 +1,72 @@
 %YAML 1.1
 ---
 actions:
-- utter_ask_fullname
-- utter_say_ticket_generated_for_verification_failed
-- utter_action_quit_with_client_voice
-- action_verify_dob_ssn
-- utter_say_ticket_generated_for_expired_account
-- action_do_password_reset
-- utter_say_username_not_found
-- action_verify_badge_id
-- utter_say_verification_success
-- utter_say_fullname_not_found
-- utter_ask_username
-- utter_say_problem_check
-- utter_say_temporary_password
-- action_create_pt_expired_account
-- utter_ask_full_name_or_username
-- utter_greet
-- utter_ask_dob
-- action_verify_username
-- utter_say_account_expired
-- utter_user_found_ask_badge_id
-- utter_ask_dob_or_ssn
-- utter_ask_what_kind_of_account
-- utter_bye
-- action_create_pt_for_verification_failed
-- utter_i_cant_understand
-- action_verify_fullname_or_username
-- action_check_account_problem
-- utter_call_agent
-- utter_say_account_is_locked
-- utter_say_not_able_to_verify
-- action_verify_fullname
-- utter_ask_ssn
+  - utter_ask_fullname
+  - utter_say_ticket_generated_for_verification_failed
+  - utter_action_quit_with_client_voice
+  - action_verify_dob_ssn
+  - utter_say_ticket_generated_for_expired_account
+  - action_do_password_reset
+  - utter_say_username_not_found
+  - action_verify_badge_id
+  - utter_say_verification_success
+  - utter_say_fullname_not_found
+  - utter_ask_username
+  - utter_say_problem_check
+  - utter_say_temporary_password
+  - action_create_pt_expired_account
+  - utter_ask_full_name_or_username
+  - utter_greet
+  - utter_ask_dob
+  - action_verify_username
+  - utter_say_account_expired
+  - utter_user_found_ask_badge_id
+  - utter_ask_dob_or_ssn
+  - utter_ask_what_kind_of_account
+  - utter_bye
+  - action_create_pt_for_verification_failed
+  - utter_i_cant_understand
+  - action_verify_fullname_or_username
+  - action_check_account_problem
+  - utter_call_agent
+  - utter_say_account_is_locked
+  - utter_say_not_able_to_verify
+  - action_verify_fullname
+  - utter_ask_ssn
+  - utter_ask_feedback
 entities:
-- SOURCE_ACCOUNT
-- DOB_SSN
-- username
-- USERNAME
-- BADGEID
-- FULLNAME
-- DO_ACTION
-- CONTACT_NUMBER
+  - SOURCE_ACCOUNT
+  - DOB_SSN
+  - username
+  - USERNAME
+  - BADGEID
+  - FULLNAME
+  - DO_ACTION
+  - CONTACT_NUMBER
 intents:
-- set_ad_contact_number
-- thank
-- set_ad_username_or_fullname
-- password_reset
-- ad_account_password_reset
-- set_ad_badgeid
-- set_ad_dob_ssn
-- user_not_willing_to_provide_information
-- user_says_badgeid_unknown
-- greet
-- human_handoff
-- out_of_scope
-- bye
-- expired_account_user_not_provided_contact_info
-- set_username
-- set_fullname
+  - set_ad_contact_number
+  - thank
+  - set_ad_username_or_fullname
+  - password_reset
+  - ad_account_password_reset
+  - set_ad_badgeid
+  - set_ad_dob_ssn
+  - user_not_willing_to_provide_information
+  - user_says_badgeid_unknown
+  - greet
+  - human_handoff
+  - out_of_scope
+  - bye
+  - expired_account_user_not_provided_contact_info
+  - set_username
+  - set_fullname
 slots:
   ACCOUNT_PROBLEM:
     type: categorical
     values:
-    - no_problem
-    - expired
-    - locked
+      - no_problem
+      - expired
+      - locked
   BADGEID:
     type: text
   BADGEID_VALID:
@@ -77,8 +78,8 @@ slots:
   DOB_SSN_ENTERED:
     type: categorical
     values:
-    - dob
-    - ssn
+      - dob
+      - ssn
   DOB_VERIFIED:
     type: bool
   EXPIRED_ACCOUNT_PT_NUMBER:
@@ -94,80 +95,87 @@ slots:
   USER_TYPED_FULLNAME_OR_USERNAME:
     type: categorical
     values:
-    - fullname
-    - username
+      - fullname
+      - username
   USER_VERIFICATION_RESULT:
     type: categorical
     values:
-    - found
-    - name_not_found
-    - username_not_found
+      - found
+      - name_not_found
+      - username_not_found
   VERIFICATION_FAILED_TICKET_NUMBER:
     type: text
 templates:
   utter_action_quit_with_client_voice:
-  - text: Sorry, I can't proceed further, Please contact our Service desk
+    - text: Sorry, I can't proceed further, Please contact our Service desk
   utter_ask_dob:
-  - text: I wasn’t able to find that social security number. Could you provide your
-      birth month and day in MM/DD format?
+    - text: I wasn’t able to find that social security number. Could you provide your
+        birth month and day in MM/DD format?
   utter_ask_dob_or_ssn:
-  - text: To continue I will need to verify some more information. Please provide
-      the month and day of your birth in MM/DD format, or provide the last four digits
-      of your social security number
+    - text: To continue I will need to verify some more information. Please provide
+        the month and day of your birth in MM/DD format, or provide the last four digits
+        of your social security number
   utter_ask_full_name_or_username:
-  - text: Okay! What is your full name or username? If providing your name, please
-      enter full name in Last Name, First Name format.
+    - text: Okay! What is your full name or username? If providing your name, please
+        enter full name in Last Name, First Name format.
   utter_ask_fullname:
-  - text: Please enter your fullname in lastname, firstname format
+    - text: Please enter your fullname in lastname, firstname format
   utter_ask_ssn:
-  - text: I wasn’t able to find that date of birth. Could you provide the last four
-      digits of your social security number?
+    - text: I wasn’t able to find that date of birth. Could you provide the last four
+        digits of your social security number?
   utter_ask_username:
-  - text: Please enter your username
+    - text: Please enter your username
   utter_ask_what_kind_of_account:
-  - buttons:
-    - payload: /ad_account_password_reset
-      title: Active Directory/Computer/Email
-    - payload: /eclinicalworks
-      title: eClinicalWorks (eCW)
-    - payload: /siemens
-      title: Siemens
-    text: Sure! Which password would you like to reset?
+    - buttons:
+        - payload: /ad_account_password_reset
+          title: Active Directory/Computer/Email
+        - payload: /eclinicalworks
+          title: eClinicalWorks (eCW)
+        - payload: /siemens
+          title: Siemens
+      text: Sure! Which password would you like to reset?
   utter_bye:
-  - text: bye,
+    - text: bye,
   utter_call_agent:
-  - text: Please wait i will call the agent,
+    - text: Please wait i will call the agent,
   utter_greet:
-  - text: Hi!, how can i help you
+    - text: Hi!, how can i help you
   utter_i_cant_understand:
-  - text: Sorry I can't understand
+    - text: Sorry I can't understand
   utter_say_account_expired:
-  - text: Hm. Your account is expired so I won’t be able to set a password for you.
-      I’ll generate a ticket to have your account activated. What is a good contact
-      number for you and when is the best time to call?
+    - text: Hm. Your account is expired so I won’t be able to set a password for you.
+        I’ll generate a ticket to have your account activated. What is a good contact
+        number for you and when is the best time to call?
   utter_say_account_is_locked:
-  - text: Seems your account is locked, I am unlocking it
+    - text: Seems your account is locked, I am unlocking it
   utter_say_fullname_not_found:
-  - text: Sorry, i cant find your matching fullname {FULLNAME},
+    - text: Sorry, i cant find your matching fullname {FULLNAME},
   utter_say_not_able_to_verify:
-  - text: I am not able to verify you at this time. I’ll generate a ticket to get
-      you further assistance. What is a good contact number for you and when is the
-      best time to call?
+    - text: I am not able to verify you at this time. I’ll generate a ticket to get
+        you further assistance. What is a good contact number for you and when is the
+        best time to call?
   utter_say_problem_check:
-  - text: Ok, let me check what is the problem
+    - text: Ok, let me check what is the problem
   utter_say_temporary_password:
-  - text: Please log in using this temporary password ({TEMP_PASSWORD}) . You will
-      be prompted to set a new password upon login. You can login at the Windows login
-      screen, the Imprivata login screen, Citrix (remote.ehmc.com), or Webmail (webmail.ehmc.com)
+    - text: Please log in using this temporary password ({TEMP_PASSWORD}) . You will
+        be prompted to set a new password upon login. You can login at the Windows login
+        screen, the Imprivata login screen, Citrix (remote.ehmc.com), or Webmail (webmail.ehmc.com)
   utter_say_ticket_generated_for_expired_account:
-  - text: Thanks! Ticket number {EXPIRED_ACCOUNT_PT_NUMBER} has been generated for
-      you!
+    - text: Thanks! Ticket number {EXPIRED_ACCOUNT_PT_NUMBER} has been generated for
+        you!
   utter_say_ticket_generated_for_verification_failed:
-  - text: Thank you. Ticket number {VERIFICATION_FAILED_TICKET_NUMBER} has been generated
-      for you. Someone will contact you at the time you provided to assist further
+    - text: Thank you. Ticket number {VERIFICATION_FAILED_TICKET_NUMBER} has been generated
+        for you. Someone will contact you at the time you provided to assist further
   utter_say_username_not_found:
-  - text: Sorry, i can't find your matching username {USERNAME}
+    - text: Sorry, i can't find your matching username {USERNAME}
   utter_say_verification_success:
-  - text: You have verified your identity
+    - text: You have verified your identity
   utter_user_found_ask_badge_id:
-  - text: Thanks! To proceed I need to verify your identity. What is your badge ID?
+    - text: Thanks! To proceed I need to verify your identity. What is your badge ID?
+  utter_ask_feedback:
+    - text: Would you like yo provide a feedack?
+      buttons:
+        - payload: /yes_feedback
+          title: Yes
+        - payload: /no_feedback
+          title: No, may be next time
